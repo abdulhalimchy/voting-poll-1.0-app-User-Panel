@@ -1,0 +1,168 @@
+<% if(typeof user != 'undefined') { %>
+    <%- include('./partials/header/after_login'); %>
+<% } else { %>
+    <%- include('./partials/header/before_login'); %>
+<% } %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 my-5">
+            <div class="card shadow">
+                <div class="card-header bg-light">
+                    
+                    <div class="d-flex flex-wrap mb-0">
+                        <a href="/user/profile/<%= pollCreator.username %>">
+                            <img src="<%= pollCreator.img.url != '' ? pollCreator.img.url : '/img/default_profile_image.png' %>" class="float-left rounded-circle ml-0" alt="image" style="width: 50px; height: 50px;">
+                        </a>            
+                        <span class="ml-2">
+                            <a href="/user/profile/<%= pollCreator.username %>" style="font-weight: 600; float: left; color: rgb(32, 35, 37);"><%= pollCreator.name %></a>
+                            </br>
+                            <span style="font-weight: 400; float: left;color: slategray">
+                                <%= createdDate %>
+                            </span>
+                        </span>   
+                        
+                        <button  class="btn btn-transparent text-secondary shadow-none ml-auto bd-highlight" data-toggle="modal" data-target="#shareLinkModal" value="<%= poll.title %>++<%= process.env.BASE_URL %>/poll/view-poll/<%= poll._id %>" onclick="setupSharePollModal(this)" ><i class="fas fa-share-alt fa-md text-secondary"></i> Share</button>
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <h5 class="mb-1" style="font-weight: 600;"><%= poll.title %></h5>
+                    <div class="trix-content"><%- poll.description %></div>
+                    <div class="my-3">
+                        <h5>Result: </h5>
+                        <ul class="list-group">
+                            <% for(let r=0; r<result.length; r++) { %>
+                                <li class="list-group-item">
+                                    <div class="d-flex flex-wrap">
+                                        <span class="bd-highlight"><%= result[r].name +" : " %> <strong><%= result[r].percentage.toFixed(2) +"%" %></strong></span>
+                                        <span class="ml-auto bd-highlight">
+                                            <%= result[r].noOfVotes > 1 ? result[r].noOfVotes + ' Votes' : result[r].noOfVotes + ' Vote' %>
+                                            <i class="fas fa-trophy <%= result[0].percentage==result[r].percentage && result[r].percentage!=0? 'text-warning' : 'text-secondary' %>"></i>
+                                        </span>
+                                    </div>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </div>
+
+                    <!-- pie charts -->
+                    <div class="row">
+                        <div class="col-lg-2 col-md-1"></div>
+                        <div class="col-lg-8 col-md-10 col-sm-12">
+                            <div id="chart_wrap"><div id="chart"></div></div>
+                            <p id="canvas_size"></p>
+                        </div>
+                        <div class="col-lg-2 col-md-1"></div>
+                    </div>
+                    <!-- end pie charts -->
+
+                    <% if(poll.status=="Open") { %>
+                        <div class="mt-2 mb-4">
+                            <%- include('./partials/messages/messages'); %>
+                            <h5>What is your opinion?</h5>
+                            <form action="/poll/submit-opinion/<%= poll._id %>" method="POST">
+                                <% for(let opt of poll.options) { %>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" name="option" id="<%= opt._id %>" class="custom-control-input" value="<%= opt._id %>" <%= JSON.stringify(opt._id)===JSON.stringify(alreadlySubmitted)? 'checked disabled' : '' %>>
+                                        <label for="<%= opt._id %>" class="custom-control-label">
+                                            <%= opt.name %>
+                                        </label>
+                                    </div>
+                                <% } %>
+                                
+                                <% if(typeof user != 'undefined') { %>
+                                    <input type="submit" value="<%= alreadlySubmitted!=-1? 'Change' : 'Submit' %>" class="btn btn-primary btn-block my-3" onclick="startLoading()">
+                                <% } else { %>
+                                    <div class="text-center">
+                                        <a href="/user/login"><u>Please login to submit opinion</u></a>  
+                                    </div> 
+                                <% } %>
+
+                            </form>
+                        </div>
+                    <% } else { %>
+                        <div class="mt-2 mb-4">
+                            <h5>Your opinion is:</h5>
+                            <% for(let opt of poll.options) { %>
+                                <div class="custom-control custom-radio">
+                                    <input disabled type="radio" name="option" id="<%= opt._id %>" class="custom-control-input" value="<%= opt._id %>" <%= JSON.stringify(opt._id)===JSON.stringify(alreadlySubmitted)? 'checked' : '' %>>
+                                    <label for="<%= opt._id %>" class="custom-control-label">
+                                        <%= opt.name %>
+                                    </label>
+                                </div>
+                            <% } %>
+
+                            <% if(poll.status=="Closed") { %>
+                                <p class="text-center"> <i class="fas fa-ban text-warning"></i> This poll is closed currently.</p>
+                            <% }else{ %>
+                                    <p class="text-center"> <i class="fas fa-hourglass-end text-danger"></i> The voting session has ended.</p>
+                            <% } %>
+                        </div>
+                    <% } %>
+                    
+                </div>
+                <div class="card-footer text-muted text-center" style="font-size: 14px;">
+                    <a href="/poll/create">Create a Poll</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Share Poll modal -->
+<%- include('./partials/poll/share_link_modal'); %>
+
+<!-- pie chart -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+    google.load("visualization", "1", {
+    packages: ["corechart"]
+    });
+    google.setOnLoadCallback(initChart);
+
+    $(window).on("throttledresize", function (event) {
+        initChart();
+    });
+
+    function initChart() {
+        let options = {
+            // legend:'none',
+            width: '100%',
+            height: '100%',
+            pieSliceText: 'percentage',
+            title: "Pie Chart",
+            chartArea: {
+                width: '100%',
+                height: '80%'
+            },
+            legend: {'position': 'bottom'}
+            
+        };
+
+        let arrayData =[['Poll', 'Overall']];
+
+        let result = <%-JSON.stringify(result)%>;
+        
+        for(let r=0; r<result.length; r++){
+            if(result[r].noOfVotes>0){
+                arrayData.push([result[r].name, result[r].noOfVotes]);
+            }
+        }
+
+        let data = google.visualization.arrayToDataTable(arrayData);
+        console.log(arrayData.length);
+
+        //If no data, then don't draw the pie chart
+        if(arrayData.length>1){
+            drawChart(data, options);
+        }else{
+            document.getElementById('chart_wrap').style.display="none"; //hide chart area
+        }
+    }
+
+    function drawChart(data, options) {
+        let chart = new google.visualization.PieChart(document.getElementById('chart'));
+        chart.draw(data, options);
+    }
+</script>

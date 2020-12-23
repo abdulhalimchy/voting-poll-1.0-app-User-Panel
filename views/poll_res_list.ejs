@@ -1,0 +1,33 @@
+<%- include('./partials/header/after_login'); %>
+<h2 class="text-center mt-5 mb-3">RESPONSE OF</h2>
+<h4 class="text-center mt-1 mb-4"><a href="/poll/view-poll/<%= pollId %>"><%= title %></a></h4>
+<div class="container-fluid table-responsive">
+    <table class="table table-bordered shadow table-hover text-center m-auto bg-white" style="width: 90%;">
+        <thead class="table-head">
+            <tr>
+                <th scope="col" class="sl">SL</th>
+                <th scope="col" class="voter">Voter</th>
+                <th scope="col" class="option">Option</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% if(typeof voterList != 'undefined'){ %>
+                <% for(let i=0; i<voterList.length; i++){ %>
+                    <tr>
+                        <th scope="row">#<%= i+1 %></th>
+                        <td>
+                            <img src="<%= voterList[i].voter.img.url != '' ? voterList[i].voter.img.url : '/img/default_profile_image.png' %>" class="rounded-circle" alt="" style="width: 25px; height: 25px;">
+                            <%= voterList[i].voter.name %> (<a href="/user/profile/<%= voterList[i].voter.username %>"><%= voterList[i].voter.username %></a>)
+                        </td>
+                        <td>
+                            <%= voterList[i].optionName %>
+                        </td>
+                    </tr>
+                <% } %>
+            <% } %>
+
+        </tbody>
+    </table>
+</div>
+<br><br>

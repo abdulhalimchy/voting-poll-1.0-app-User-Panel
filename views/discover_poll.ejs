@@ -1,0 +1,66 @@
+<% if(typeof user != 'undefined') { %>
+    <%- include('./partials/header/after_login'); %>
+<% } else { %>
+    <%- include('./partials/header/before_login'); %>
+<% } %>
+
+<h2 class="text-center mt-5 mb-4">DISCOVER</h2>
+
+<!-- searh bar -->
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-sm-10 col-md-8 col-lg-6 m-auto" >
+            <form action="/poll/discover" method="POST">
+                <div class="form-group d-flex">
+                    <input type="text" name="search" placeholder="Search by title" value="<%= typeof searchInput != 'undefined'? searchInput : '' %>" class="form-control" style="border-radius: 4px 0px 0px 4px;">
+                    <button type="submit" class="btn bg-primary justify-content-end" onclick="startLoading()" style="border-radius: 0px 4px 4px 0px;">
+                        <i class="fas fa-search text-light"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /search bar end -->
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header">
+            <h4 class="text-center">Global Polls</h4>
+        </div>
+        <div class="card-body">
+
+            <% if(typeof poll != 'undefined' && poll.length!=0){ %>
+                <% for(let i=0; i<poll.length; i++){ %>
+                    
+
+                    <div class="d-flex flex-wrap mb-0">
+                        <a href="/user/profile/<%= poll[i].pollCreator.username %>">
+                            <img src="<%= poll[i].pollCreator.img.url != '' ? poll[i].pollCreator.img.url : '/img/default_profile_image.png' %>" class="float-left rounded-circle ml-0" alt="image" style="width: 45px; height: 45px;">
+                        </a>            
+                        <span class="ml-2">
+                            <a href="/user/profile/<%= poll[i].pollCreator.username %>" style="font-weight: 600; float: left; color: rgb(32, 35, 37);"><%= poll[i].pollCreator.name %></a>
+                            </br>
+                            <span style="font-weight: 400; font-size: 14px; float: left;color: slategray">
+                                <%= poll[i].date %>
+                            </span>
+                        </span> 
+                    </div>
+                    
+                    <h5 class="ml-2 mt-3 p-0" ><a href="/poll/view-poll/<%= poll[i]._id %>" class="link-secondary" style="color:rgb(28, 143, 196)"><%= poll[i].title %></a></h5>
+                    <div class="ml-2"><span class="text-dark"> <%- poll[i].description %></span></div>
+
+                    <div class="d-flex flex-row-reverse">
+                        <span ><i class="fas fa-poll"></i> <%= poll[i].totalVote>1 ? 'Votes '+poll[i].totalVote : 'Vote '+poll[i].totalVote %></span>
+                    </div>
+                    <hr>
+                    
+                <% } %>
+            <% } else { %>
+                <div class="text-center">No poll found.</div>
+            <% } %>
+        </div>
+        
+    </div>
+</div>
+<br><br><br>

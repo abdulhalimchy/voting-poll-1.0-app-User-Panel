@@ -1,0 +1,37 @@
+<!-- lots of errors  -->
+<% if(typeof errors != 'undefined'){ %>
+    <% errors.forEach((err)=>{ %>
+        <div class="alert alert-dismissible alert-danger focus-this-element" tabindex="-1" style="outline: none;">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= err.message %>
+        </div>
+    <% }); %>
+<% } %>
+
+
+<!-- success message -->
+<% if(success_msg!='' ){ %>
+    <div class="alert alert-dismissible alert-success focus-this-element" tabindex="-1" style="outline: none;">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= success_msg %>
+    </div>
+<% } %>
+
+<!-- error_msg message -->
+<% if(error_msg!='' ){ %>
+    <div class="alert alert-dismissible alert-danger focus-this-element" tabindex="-1" style="outline: none;">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= error_msg %>
+    </div>
+<% } %>
+
+<!-- error message-->
+<% if(error!='' ){ %>
+    <div class="alert alert-dismissible alert-danger focus-this-element" tabindex="-1" style="outline: none;">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= error %>
+        <% if(error=="Please verify your email"){ %>
+             - <a href="/user/resend-verification" class="text-primary">Resend verification email</a>
+        <% } %>
+    </div>
+<% } %>

@@ -1,0 +1,12 @@
+<% if(typeof option != 'undefined'){ %>
+    <%if (option.length > 2) { %>
+        <% for(let i=2; i<option.length; i++){ %>
+            <div class="form-group d-flex">
+                <input type="text" name="option" placeholder="Option" value="<%= option[i] %>" class="form-control" style="border-radius: 4px 0px 0px 4px;">
+                <button class="btn bg-danger justify-content-end" style="border-radius: 0px 4px 4px 0px;" onclick="removeOption(event, this)">
+                    <i class="fas fa-times text-light"></i>
+                </button>
+            </div>
+        <% } %>
+    <% } %>
+<% } %>

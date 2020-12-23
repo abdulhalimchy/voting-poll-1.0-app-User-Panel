@@ -1,0 +1,95 @@
+<% if(typeof user != 'undefined') { %>
+    <%- include('./partials/header/after_login'); %>
+<% } else { %>
+    <%- include('./partials/header/before_login'); %>
+<% } %>
+
+<div class="container py-5">
+    <div class="row py-3">
+        <div class="col-lg-1 col-md-1 col-sm-0"></div>
+        <div class="col-lg-10 col-md-10 col-sm-12">
+            <div class="card align-items-center shadow border-0">
+                <h3 class="my-5 text-center px-2">WELCOME TO <span style="color: rgb(23, 149, 172); font-weight: 700;">VOTING POLL</span></h3>
+                <img class="img-fluid mb-5" src="/img/vote.png" style="max-width: 300px;">
+                <a href="/poll/create" class="btn btn-info btn px-5 mb-5">Create a Poll</a>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-0"></div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row align-items-center">
+        <div class="col-lg-4 col-md-2 col-sm-1"></div>
+        <div class="col-lg-4 col-md-8 col-sm-10 text-center">
+            <h3 class="font-weight-bold">How it works?</h3>
+        </div>
+        <div class="col-lg-4 col-md-2 col-sm-1"></div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
+            <div class="card shadow align-items-center border-0 p-2">
+                <i class="fas fa-poll mt-3" style="font-size: 80px; color: rgb(91, 182, 212);"></i>
+                <h5 class="font-weight-bold mt-3">Create a Poll</h5>
+                <p class="px-1 text-center">Fill the poll creation form & create your poll.</p>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
+            <div class="card shadow align-items-center border-0 p-2">
+                <i class="fas fa-share-alt mt-3" style="font-size: 80px; color: rgb(53, 121, 185);"></i>
+                <h5 class="font-weight-bold mt-3">Share the Link</h5>
+                <p class="px-1 text-center">Send the poll to other people by link share.</p>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
+            <div class="card shadow align-items-center border-0 p-2">
+                <i class="fas fa-tasks mt-3" style="font-size: 80px; color: rgb(77, 201, 143);"></i>
+                <h5 class="font-weight-bold mt-3">Evaluate Results</h5>
+                <p class="px-1 text-center">Check your results in real-time.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+
+    <div class="row align-items-center">
+        <div class="col-lg-4 col-md-2 col-sm-1"></div>
+        <div class="col-lg-4 col-md-8 col-sm-10 text-center">
+            <h3 class="font-weight-bold mb-4 mt-3">Still Interested?</h3>
+        </div>
+        <div class="col-lg-4 col-md-2 col-sm-1"></div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="card shadow align-items-center border-0 my-2 p-2">
+                <h5 class="font-weight-bold mt-4 mb-3">Contact us</h5>
+                <p class="px-1 text-center">If you want to contact with us plz click the button and check our
+                    contack page.</p>
+                <a href="Contact" class="mb-3">Contact us</a>
+
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="card shadow align-items-center border-0 my-2 p-2">
+                <h5 class="font-weight-bold mt-4 mb-3">Questions? </h5>
+                <p class="px-1 text-center">If you have more question plz check our F.A.Q page and ask questions.</p>
+                <a href="/faq" class="mb-3">Read F.A.Q</a>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="card shadow align-items-center border-0 my-2 p-2">
+                <h5 class="font-weight-bold mt-4 mb-3">Curious?  </h5>
+                <p class="px-1 text-center">Do you wanted to know more about us? So you can check our about page.</p>
+                <a href="/about" class="mb-3">About</a>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

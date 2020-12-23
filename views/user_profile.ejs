@@ -1,0 +1,24 @@
+<% if(typeof user != 'undefined') { %>
+    <%- include('./partials/header/after_login'); %>
+<% } else { %>
+    <%- include('./partials/header/before_login'); %>
+<% } %>
+<div class="row mt-5 mr-0 ml-0 mb-5">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body shadow">
+            <% if(typeof user != 'undefined' && user.username===resultUser.username) { %>
+                <a href="/user/account-settings"><i class="fas fa-pencil-alt float-right"></i></a>
+            <% } %>
+
+            <!-- Profile Picture -->
+            <div class="d-flex align-items-center mt-3 mb-2">
+                <img src="<%= resultUser.img.url != '' ? resultUser.img.url : '/img/default_profile_image.png' %>" class="rounded-circle mx-auto d-block" alt="Profile Image" style="height: 120px; width: 120px; border: 3px solid rgb(214, 210, 210);">
+            </div>
+            <h4 class="text-center mb-0"><%= resultUser.name %></h4>
+            <p class="text-center mb-0">(<%= resultUser.username %>)</p>
+            <p class="text-center"><a href="mailto:<%= resultUser.email %>"><%= resultUser.email %></a></p>
+
+        </div>            
+    </div>
+</div>
+<br>

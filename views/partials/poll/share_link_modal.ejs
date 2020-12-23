@@ -1,0 +1,30 @@
+<!-- Share Link Modal -->
+<div class="modal" id="shareLinkModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+    
+            <!-- modal header -->
+            <div class="modal-header">
+                <h4> <i class="fas fa-share-alt"></i> Share Poll</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <h5 class="mb-3" id="pollTitle"></h5>
+                <div class="form-inline">
+                    <input type="text" id="pollLink" value="" class="form-control mr-1" style="width: 63%;">
+                    <button value="I am a button" type="button" class="btnCopyLink btn btn-primary" data-container="body" data-toggle="tooltip" data-placement="top" title="Copied" onclick="copyToClipboard()" style="width: 35%;">
+                        Copy Link
+                    </button>
+                </div>
+            </div>
+    
+            <!-- modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+    
+        </div>
+    </div>
+</div>
+<!-- Modal share lik End -->

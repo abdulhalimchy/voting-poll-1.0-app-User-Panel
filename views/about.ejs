@@ -1,0 +1,50 @@
+<% if(typeof user != 'undefined') { %>
+    <%- include('./partials/header/after_login'); %>
+<% } else { %>
+    <%- include('./partials/header/before_login'); %>
+<% } %>
+
+<div class="container mt-5">
+    <div class="row align-items-center">
+
+        <div class="col-lg-1 col-md-1"></div>
+        <div class="col-lg-3 col-md-4 col-sm-12 mt-2">
+            <h3 class="text-center">ABOUT</h3>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 mt-2">
+            <p class="font-italic text-muted  text-center">Mainly this project is a poll creation website. Where
+                user can create polls and share with other people using link share. User also can publish their poll globally. Also, Anytime user unpublish from global poll. User can delete their poll, end
+                their poll permanently and also they can keep the polls closed or open as long as they want. They also can
+                vote other users polls. User can see their all creating polls and also see their all voting
+                participations.</p>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>
+
+
+<!-- card -->
+<div class="container mt-5">
+    <hr>
+    <h3 class="text-center mt-5 mb-4">DEVELOPER</h3>
+
+    <div class="row text-center mb-5 mt-2">
+        
+        <div class="col-xl-3"></div>
+
+        <div class="col-xl-6 col-md-6 col-sm-12 mb-5">
+            <div class="card shadow align-items-center px-2 pt-4 pb-3">
+                <h5 class="mb-0">Abdul Halim Chowdhury</h5>
+                <span class="small text-uppercase text-muted mt-2">Web
+                    Developer</span>
+
+                <p class="text-center mt-3 px-1 text-muted">The main goal of this project is to keep this poll site safe, secure and
+                    easy for user. So, I am always working and taking care that user do not face any problems. Keep your support always with
+                    me.<br>Thank You</p>
+            </div>
+        </div>
+
+        <div class="col-xl-3"></div>
+
+    </div>
+</div>

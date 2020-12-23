@@ -1,0 +1,30 @@
+<!-- Confirm Poll End Modal -->
+<div class="modal" id="confirmEndPoll">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+    
+            <!-- modal header -->
+            <div class="modal-header">
+                <h4> <i class="fas fa-hourglass-end text"></i> End Voting Session</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <h5 class="mb-3" id="pollTitle3"></h5>
+                <p class="my-2">Are you sure want to end voting session for this poll?</p>
+            </div>
+    
+            <!-- modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+
+                <form id="pollEndLink" action="GET">
+                    <input id="endPoll" type="submit" value="Yes" class="btn btn-danger justify-content-end" data-dismiss="modal" onclick="startLoading()">
+                </form>
+
+            </div>
+    
+        </div>
+    </div>
+</div>
+<!-- Modal End -->

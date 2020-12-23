@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="/img/brand logo.png" width="145" alt="brand logo" loading="lazy">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+        aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ml-2">
+                <a class="nav-link text-white" href="/">HOME<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ml-2">
+                <a class="nav-link text-white" href="/poll/create">CREATE A POLL</a>
+            </li>
+            <li class="nav-item ml-2">
+                <a class="nav-link text-white" href="/poll/mypoll">MY POLLS</a>
+            </li>
+            <li class="nav-item ml-2">
+                <a class="nav-link text-white" href="/poll/my-participations">MY PARTICIPATIONS</a>
+            </li>
+            <li class="nav-item ml-2">
+                <a class="nav-link text-white" href="/poll/discover">DISCOVER</a>
+            </li>
+            <li class="nav-item ml-2">
+                <a class="nav-link text-white" href="/about">ABOUT</a>
+            </li>
+            <li class="nav-item ml-2">
+                <a class="nav-link text-white" href="/contact">CONTACT US</a>
+            </li>
+
+            <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Poll</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/poll/mypoll">My Polls</a>
+                    <a class="dropdown-item" href="/poll/my-participations">My Participations</a>
+                    <a class="dropdown-item" href="/poll/create">Create Poll</a>
+                </div>
+            </li> -->
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown ml-auto">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="<%= user.img.url != '' ? user.img.url : '/img/default_profile_image.png' %>" class="rounded-circle" alt="" style="width: 32px; height: 32px;">
+                    <%= user.name  %>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/user/profile/<%= user.username %>">My Profile</a>
+                    <a class="dropdown-item" href="/user/account-settings">Account Settings</a>
+                    <a class="dropdown-item" href="/user/logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+        
+    </div>
+</nav>

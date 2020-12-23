@@ -1,0 +1,38 @@
+<% if(typeof user != 'undefined') { %>
+    <%- include('./partials/header/after_login'); %>
+<% } else { %>
+    <%- include('./partials/header/before_login'); %>
+<% } %>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card card-body shadow">
+                <h3 class="text-center">CONTACT US</h3>
+                <%- include('./partials/messages/messages'); %>
+                <form action="/contact" method="POST">
+                    <div class="form-group">
+                        <label for="name"><b>Name</b></label>
+                        <input type="text" name="name" id="name" placeholder="name" value="<%= typeof user != 'undefined' ? user.name : '' %>" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"><b>Email</b></label>
+                        <input type="text" name="email" id="email" placeholder="email" value="<%= typeof user != 'undefined' ? user.email : '' %>" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message"><b>Message</b></label>
+                        <textarea type="textarea" name="message" id="message" placeholder="type your message.." class="form-control"><%= typeof message != 'undefined' ? message : '' %></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-center my-4">
+                        <input type="submit" class="btn btn-primary" onclick="startLoading()" value="Send message">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
