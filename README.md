@@ -55,6 +55,15 @@ The “Voting Poll” is a web application which is built for online voting syst
 ##### For Admin:
 ○ An admin can do everything what super admin can do except add/delete an admin
 
+
+### Activiy Diagram of User
+![alt text](https://i.ibb.co/7nKq4m2/voting-poll-activity-diagram-of-user.png)
+### Activiy Diagram of Admin
+![alt text](https://i.ibb.co/f2tdr6F/voting-poll-activity-diagram-admin-final.png)
+### ER Diagram
+![alt text](https://i.ibb.co/r7Dbkw4/voting-poll-erd-final.png)
+
+
 ##Install Dependencies
 
     npm install
